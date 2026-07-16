@@ -126,6 +126,7 @@ private void clearFields(){
         btnUpdate.setFont(new java.awt.Font("American Typewriter", 0, 14)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(153, 51, 0));
         btnUpdate.setText("Update");
+        btnUpdate.addActionListener(this::btnUpdateActionPerformed);
 
         btnDelete.setFont(new java.awt.Font("American Typewriter", 0, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(153, 51, 0));
@@ -293,6 +294,36 @@ private void clearFields(){
             JOptionPane.showMessageDialog(this, "Please enter valid numeric values.");
         } 
     }//GEN-LAST:event_btnAddActionPerformed
+
+    private void btnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnUpdateActionPerformed
+        // TODO add your handling code here:
+        try {
+            int itemId = Integer.parseInt(txtItemID.getText().trim());
+            
+            MenuItem item = menuManager.searchMenuItem(itemId);
+            
+            if (item == null){
+                JOptionPane.showMessageDialog(this, "Item not found.");
+                return;
+            }
+            
+            item.setItemName(txtItemName.getText().trim());
+            item.setCategory(cmbCategory.getSelectedItem().toString());
+            item.setPrice(Double.parseDouble(txtPrice.getText().trim()));
+            item.setPreparationTime(Integer.parseInt(txtPreparationTime.getText().trim()));
+            item.setAvailable(chkAvailable.isSelected());
+            
+            fileHandler.saveMenu(menuManager.getAllMenuItems());
+            
+            refreshTable();
+            clearFields();
+            
+            JOptionPane.showMessageDialog(this, "Menu item updated successfully!");
+        }catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(this, "Please enter valid numeric values.");
+        }   
+
+    }//GEN-LAST:event_btnUpdateActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
