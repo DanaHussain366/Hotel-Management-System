@@ -6,7 +6,7 @@ package RoomManagement_m1;
 
 /**
  *
- * @author jj
+ * @author 
  */
 public class Main {
     
