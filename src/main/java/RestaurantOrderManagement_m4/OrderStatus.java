@@ -1,0 +1,16 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Enum.java to edit this template
+ */
+package RestaurantOrderManagement_m4;
+
+/**
+ *
+ * @author Dana Hussain
+ * ID: 2241100226
+ * section: 01A
+ */
+public enum OrderStatus {
+    PLACED, PREPARING, SERVED, COMPLETED, CANCELLED
+    
+}
