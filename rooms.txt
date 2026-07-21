@@ -1,3 +1,4 @@
 101,1,Single,1,30.0,OCCUPIED,true,false,false,false
 102,1,Double,2,60.0,AVAILABLE,true,true,false,false
 201,2,Suite,4,230.0,MAINTENANCE,true,true,true,true
+104,2,Deluxe,2,70.0,MAINTENANCE,true,true,true,true

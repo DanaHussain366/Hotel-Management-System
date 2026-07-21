@@ -26,7 +26,7 @@ public class RoomManagementGUI extends javax.swing.JFrame {
      */
     public RoomManagementGUI() {
         initComponents();
-        
+        txtprice.setEditable(false);
         manager = new RoomManager();
         files = new RoomFiles(manager);
         
@@ -614,48 +614,66 @@ public class RoomManagementGUI extends javax.swing.JFrame {
 
     
     private void btnaddActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnaddActionPerformed
-        if (txtroomnum.getText().trim().isEmpty() || txtfloornum.getText().trim().isEmpty()
-        || txtbedcount.getText().trim().isEmpty() || txtprice.getText().trim().isEmpty()) {
 
-            JOptionPane.showMessageDialog(this,
+    if (txtroomnum.getText().trim().isEmpty() || txtfloornum.getText().trim().isEmpty()
+            || txtbedcount.getText().trim().isEmpty()) {
+
+        JOptionPane.showMessageDialog(this,
                 "Please fill in all required fields.",
                 "Missing Information",
                 JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        
-        
-        int roomNumber = Integer.parseInt(txtroomnum.getText());
-        
-        if(manager.searchRoomNumber(roomNumber) != null){
+        return;
+    }
 
-            JOptionPane.showMessageDialog(this,
-                "Room number already exists.",
-                "Duplicate Room",
-                JOptionPane.WARNING_MESSAGE);
-            return;
-        }
-        
-        int floorNumber = Integer.parseInt(txtfloornum.getText());
-        String roomType = cmbxroomtyp.getSelectedItem().toString();
-        int bedCount = Integer.parseInt(txtbedcount.getText());
-        double price = Double.parseDouble(txtprice.getText());
-        RoomStatus status = RoomStatus.valueOf(cmbxstatus.getSelectedItem().toString());
-        boolean hasAC = chkAC.isSelected();
-        boolean hasWifi = chkWifi.isSelected();
-        boolean hasTV = chkTV.isSelected();
-        boolean hasBalcony = chkBalcony.isSelected();
-        
-        
-        
-        Room r = new Room(roomNumber,floorNumber,roomType,bedCount,price,status,
-            hasAC,hasWifi,hasTV,hasBalcony);
-        
-        manager.addRoom(r);
-        loadTable(); 
-        
-        
-        JOptionPane.showMessageDialog(this, "Room added successfully!");
+    int roomNumber = Integer.parseInt(txtroomnum.getText());
+
+    if (manager.searchRoomNumber(roomNumber) != null) {
+
+        JOptionPane.showMessageDialog(this, "Room number already exists.", "Duplicate Room", JOptionPane.WARNING_MESSAGE);
+        return;
+    }
+
+    int floorNumber = Integer.parseInt(txtfloornum.getText());
+    String roomType = cmbxroomtyp.getSelectedItem().toString();
+    int bedCount = Integer.parseInt(txtbedcount.getText());
+
+    double price = 0;
+
+    switch (roomType) {
+        case "Single":
+            price = 30;
+            break;
+        case "Double":
+            price = 50;
+            break;
+        case "Deluxe":
+            price = 70;
+            break;
+        case "Suite":
+            price = 90;
+            break;
+        case "Family":
+            price = 110;
+            break;
+    }
+
+    txtprice.setText(String.valueOf(price));
+
+    RoomStatus status = RoomStatus.valueOf(cmbxstatus.getSelectedItem().toString());
+
+    boolean hasAC = chkAC.isSelected();
+    boolean hasWifi = chkWifi.isSelected();
+    boolean hasTV = chkTV.isSelected();
+    boolean hasBalcony = chkBalcony.isSelected();
+
+    Room r = new Room(roomNumber, floorNumber, roomType, bedCount,
+            price, status, hasAC, hasWifi, hasTV, hasBalcony);
+
+    manager.addRoom(r);
+    files.saveRooms();
+    loadTable();
+
+    JOptionPane.showMessageDialog(this, "Room added successfully!");
     }//GEN-LAST:event_btnaddActionPerformed
 
     private void btnsaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnsaveActionPerformed
@@ -692,9 +710,38 @@ public class RoomManagementGUI extends javax.swing.JFrame {
     private void btneditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btneditActionPerformed
         int roomNumber = Integer.parseInt(txtroomnum.getText());
         int floorNumber = Integer.parseInt(txtfloornum.getText());
-        String roomType = cmbxroomtyp.getSelectedItem().toString();
+        
         int bedCount = Integer.parseInt(txtbedcount.getText());
-        double pricePerNight = Double.parseDouble(txtprice.getText());
+ 
+        String roomType = cmbxroomtyp.getSelectedItem().toString();
+
+        double pricePerNight = 0;
+
+        switch (roomType) {
+
+            case "Single":
+                pricePerNight = 30;
+                break;
+
+            case "Double":
+                pricePerNight = 50;
+                break;
+
+            case "Deluxe":
+                pricePerNight = 70;
+                break;
+
+            case "Suite":
+                pricePerNight = 90;
+                break;
+
+            case "Family":
+                pricePerNight = 110;
+                break;
+            }
+
+        txtprice.setText(String.valueOf(pricePerNight));
+        
         RoomStatus roomStatus = RoomStatus.valueOf(cmbxstatus.getSelectedItem().toString());
         boolean hasAC = chkAC.isSelected();
         boolean hasWifi = chkWifi.isSelected();

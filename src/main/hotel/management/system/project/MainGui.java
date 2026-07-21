@@ -51,7 +51,7 @@ public class MainGui extends javax.swing.JFrame {
         btnreservation.setText("Reservation & Guest Stay ");
         btnreservation.addActionListener(this::btnreservationActionPerformed);
 
-        btnrestauraunt.setText("Restauraunt Menu & Table Management");
+        btnrestauraunt.setText("Restaurant Menu & Table Management");
         btnrestauraunt.addActionListener(this::btnrestaurauntActionPerformed);
 
         btnorder.setText("Restaurant Order Management");
