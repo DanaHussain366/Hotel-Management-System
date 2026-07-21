@@ -1,5 +1,4 @@
-package Reservation_GuestStayManagement_m2;
-
+package ReservationAndGuestStay_m2;
 
 import java.io.File;
 import java.io.IOException;

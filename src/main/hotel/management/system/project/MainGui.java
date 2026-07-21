@@ -11,6 +11,7 @@ package main.hotel.management.system.project;
 
 import RoomManagement_m1.RoomManagementGUI;
 import RestaurantMenu_TableManagement_m3.LoginFrame;
+import ReservationAndGuestStay_m2.ReservationGUI;
 import javax.swing.JOptionPane;
 
 public class MainGui extends javax.swing.JFrame {
@@ -130,17 +131,22 @@ public class MainGui extends javax.swing.JFrame {
      
         RoomManagementGUI room = new RoomManagementGUI();
         room.setVisible(true);
+        
 
     }//GEN-LAST:event_btnroommanagementActionPerformed
 
     private void btnreservationActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnreservationActionPerformed
-        // TODO add your handling code here:
+        ReservationGUI reservation = new ReservationGUI();
+        reservation.setVisible(true);
+       
     }//GEN-LAST:event_btnreservationActionPerformed
 
     private void btnrestaurauntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnrestaurauntActionPerformed
 
         LoginFrame login = new LoginFrame();
         login.setVisible(true);
+        
+        
     }//GEN-LAST:event_btnrestaurauntActionPerformed
 
     private void btnexitActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnexitActionPerformed

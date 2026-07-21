@@ -836,7 +836,7 @@ public class RoomManagementGUI extends javax.swing.JFrame {
         JOptionPane.YES_NO_OPTION);
 
         if(choice == JOptionPane.YES_OPTION){
-            System.exit(0);
+            this.dispose();
         }
     }//GEN-LAST:event_btnexitActionPerformed
 

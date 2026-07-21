@@ -1,8 +1,5 @@
 //this class connnects the reservations to the room management module
-package Reservation_GuestStayManagement_m2;
-
-
-
+package ReservationAndGuestStay_m2;
 
 import RoomManagement_m1.Room;
 import RoomManagement_m1.RoomFiles;

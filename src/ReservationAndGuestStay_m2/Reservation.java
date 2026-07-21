@@ -1,4 +1,5 @@
-package Reservation_GuestStayManagement_m2;
+
+package ReservationAndGuestStay_m2;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
