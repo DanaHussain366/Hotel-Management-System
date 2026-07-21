@@ -33,31 +33,67 @@ public class MainGui extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        btnroommanagement = new javax.swing.JButton();
         titlelbl = new javax.swing.JLabel();
+        btnexit = new javax.swing.JButton();
+        jPanel1 = new javax.swing.JPanel();
+        btnroommanagement = new javax.swing.JButton();
         btnreservation = new javax.swing.JButton();
         btnrestauraunt = new javax.swing.JButton();
         btnorder = new javax.swing.JButton();
-        btnexit = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
+        titlelbl.setFont(new java.awt.Font("STIX Two Text", 1, 27)); // NOI18N
+        titlelbl.setText("Hotel Management System");
+
+        btnexit.setBackground(new java.awt.Color(255, 204, 204));
+        btnexit.setText("EXIT");
+        btnexit.addActionListener(this::btnexitActionPerformed);
+
+        jPanel1.setBackground(new java.awt.Color(255, 255, 204));
+        jPanel1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+
+        btnroommanagement.setFont(new java.awt.Font("STIX Two Text", 0, 14)); // NOI18N
         btnroommanagement.setText("Room Management");
         btnroommanagement.addActionListener(this::btnroommanagementActionPerformed);
 
-        titlelbl.setFont(new java.awt.Font("Helvetica Neue", 1, 24)); // NOI18N
-        titlelbl.setText("Hotel Management System");
-
+        btnreservation.setFont(new java.awt.Font("STIX Two Text", 0, 14)); // NOI18N
         btnreservation.setText("Reservation & Guest Stay ");
         btnreservation.addActionListener(this::btnreservationActionPerformed);
 
+        btnrestauraunt.setFont(new java.awt.Font("STIX Two Text", 0, 14)); // NOI18N
         btnrestauraunt.setText("Restaurant Menu & Table Management");
         btnrestauraunt.addActionListener(this::btnrestaurauntActionPerformed);
 
+        btnorder.setFont(new java.awt.Font("STIX Two Text", 0, 14)); // NOI18N
         btnorder.setText("Restaurant Order Management");
 
-        btnexit.setText("EXIT");
-        btnexit.addActionListener(this::btnexitActionPerformed);
+        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
+        jPanel1.setLayout(jPanel1Layout);
+        jPanel1Layout.setHorizontalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(37, 37, 37)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(btnorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnreservation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnrestauraunt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(btnroommanagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(34, Short.MAX_VALUE))
+        );
+        jPanel1Layout.setVerticalGroup(
+            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnroommanagement, javax.swing.GroupLayout.PREFERRED_SIZE, 60, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnreservation, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnrestauraunt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnorder, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(27, 27, 27))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -66,36 +102,25 @@ public class MainGui extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(160, 160, 160)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(btnroommanagement, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnreservation, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnrestauraunt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(btnorder, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(247, 247, 247)
+                        .addGap(211, 211, 211)
                         .addComponent(btnexit))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(127, 127, 127)
-                        .addComponent(titlelbl)))
-                .addContainerGap(181, Short.MAX_VALUE))
+                        .addGap(81, 81, 81)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(titlelbl)
+                            .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(81, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(16, 16, 16)
+                .addGap(22, 22, 22)
                 .addComponent(titlelbl)
-                .addGap(36, 36, 36)
-                .addComponent(btnroommanagement, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnreservation, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(btnrestauraunt, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(btnorder, javax.swing.GroupLayout.PREFERRED_SIZE, 64, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, 286, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(btnexit)
-                .addContainerGap(47, Short.MAX_VALUE))
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         pack();
@@ -163,6 +188,7 @@ public class MainGui extends javax.swing.JFrame {
     private javax.swing.JButton btnreservation;
     private javax.swing.JButton btnrestauraunt;
     private javax.swing.JButton btnroommanagement;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel titlelbl;
     // End of variables declaration//GEN-END:variables
 }
