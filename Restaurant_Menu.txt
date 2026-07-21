@@ -1,0 +1,16 @@
+1,Caesar Salad,Starter,2.5,8,true
+2,Garlic Bread,Starter,1.5,5,true
+3,Chicken Burger,Main Course,4.5,15,true
+4,Beef Burger,Main Course,5.0,18,true
+5,Grilled Chicken,Main Course,6.5,20,true
+6,Margherita Pizza,Main Course,5.5,18,true
+7,Pasta Alfredo,Main Course,5.75,15,true
+8,French Fries,Snack,1.75,6,true
+9,Onion Rings,Snack,2.0,7,true
+10,Chocolate Cake,Dessert,3.0,8,true
+11,Ice Cream,Dessert,2.5,2,true
+12,Soft Drink,Drink,1.25,1,true
+13,Fresh Juice,Drink,1.5,1,true
+14,Orange Juice,Drink,2.5,2,true
+15,Chicken Wings,Starter,3.75,12,true
+16,Cheesecake,Dessert,3.5,5,true

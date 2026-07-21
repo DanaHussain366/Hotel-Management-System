@@ -1,0 +1,8 @@
+1,1,2,Available
+2,2,4,Occupied
+3,3,6,Reserved
+4,4,2,Available
+5,5,8,Occupied
+6,6,4,Available
+7,7,6,Reserved
+8,8,2,Available

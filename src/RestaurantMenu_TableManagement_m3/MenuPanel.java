@@ -21,41 +21,48 @@ public class MenuPanel extends javax.swing.JPanel{
     /**
      * Creates new form MenuPanel
      */
-    public MenuPanel() {
+    public MenuPanel(boolean isAdmin) {
         initComponents();
         
         fileHandler = new FileHandler();
         menuManager = new MenuManager();
         menuManager.getAllMenuItems().addAll(fileHandler.loadMenu());
         
+        if (!isAdmin) {
+            btnAdd.setEnabled(false);
+            btnUpdate.setEnabled(false);
+            btnDelete.setEnabled(false);
+        }
         refreshTable();
+        
+        tblMenu.setRowHeight(25);
+    }
+    
+    private void refreshTable(){
+        DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
+        model.setRowCount(0);
+        
+        for (MenuItem item : menuManager.getAllMenuItems()) {
+            model.addRow(new Object[]{
+                item.getItemID(),
+                item.getItemName(),
+                item.getCategory(),
+                item.getPrice(),
+                item.getPreparationTime(),
+                item.isAvailable()
+            });
+        }
+    }
+    
+    private void clearFields(){
+        txtItemID.setText("");
+        txtItemName.setText("");
+        txtPrice.setText("");
+        txtPreparationTime.setText("");
+        cmbCategory.setSelectedIndex(0);
+        chkAvailable.setSelected(false);
     }
 
-private void refreshTable(){
-    DefaultTableModel model = (DefaultTableModel) tblMenu.getModel();
-    
-    model.setRowCount(0);
-    
-    for (MenuItem item : menuManager.getAllMenuItems()) {
-        model.addRow(new Object[]{
-            item.getItemID(),
-            item.getItemName(),
-            item.getCategory(),
-            item.getPrice(),
-            item.getPreparationTime(),
-            item.isAvailable()
-        });
-    }
-}
-
-private void clearFields(){
-    txtItemID.setText("");
-    txtItemName.setText("");
-    txtPrice.setText("");
-    txtPreparationTime.setText("");
-    cmbCategory.setSelectedIndex(0);
-    chkAvailable.setSelected(false);
-}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -85,10 +92,14 @@ private void clearFields(){
         btnClear = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         tblMenu = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        jSeparator1 = new javax.swing.JSeparator();
 
-        jLabel1.setFont(new java.awt.Font("Apple Chancery", 1, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 51, 51));
-        jLabel1.setText("Resturant Menu Management");
+        setPreferredSize(new java.awt.Dimension(1040, 640));
+
+        jLabel1.setFont(new java.awt.Font("American Typewriter", 1, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(33, 99, 181));
+        jLabel1.setText("Restaurant Menu Management");
 
         jLabel2.setFont(new java.awt.Font("American Typewriter", 0, 14)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 51, 0));
@@ -114,8 +125,10 @@ private void clearFields(){
         jLabel7.setForeground(new java.awt.Color(102, 51, 0));
         jLabel7.setText("Availability:");
 
+        cmbCategory.setForeground(new java.awt.Color(153, 51, 0));
         cmbCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Starter", "Main Course", "Dessert", "Drink", "Snack" }));
 
+        chkAvailable.setForeground(new java.awt.Color(153, 51, 0));
         chkAvailable.setText("Available");
 
         btnAdd.setFont(new java.awt.Font("American Typewriter", 0, 14)); // NOI18N
@@ -126,19 +139,28 @@ private void clearFields(){
         btnUpdate.setFont(new java.awt.Font("American Typewriter", 0, 14)); // NOI18N
         btnUpdate.setForeground(new java.awt.Color(153, 51, 0));
         btnUpdate.setText("Update");
+        btnUpdate.setPreferredSize(new java.awt.Dimension(85, 35));
         btnUpdate.addActionListener(this::btnUpdateActionPerformed);
 
         btnDelete.setFont(new java.awt.Font("American Typewriter", 0, 14)); // NOI18N
         btnDelete.setForeground(new java.awt.Color(153, 51, 0));
         btnDelete.setText("Delete");
+        btnDelete.setPreferredSize(new java.awt.Dimension(85, 35));
+        btnDelete.addActionListener(this::btnDeleteActionPerformed);
 
         btnSearch.setFont(new java.awt.Font("American Typewriter", 0, 14)); // NOI18N
         btnSearch.setForeground(new java.awt.Color(153, 51, 0));
         btnSearch.setText("Search");
+        btnSearch.setPreferredSize(new java.awt.Dimension(85, 35));
+        btnSearch.addActionListener(this::btnSearchActionPerformed);
 
         btnClear.setFont(new java.awt.Font("American Typewriter", 0, 14)); // NOI18N
         btnClear.setForeground(new java.awt.Color(153, 51, 0));
         btnClear.setText("Clear");
+        btnClear.setPreferredSize(new java.awt.Dimension(85, 35));
+        btnClear.addActionListener(this::btnClearActionPerformed);
+
+        jScrollPane1.setPreferredSize(new java.awt.Dimension(300, 80));
 
         tblMenu.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -157,6 +179,10 @@ private void clearFields(){
         ));
         jScrollPane1.setViewportView(tblMenu);
 
+        jLabel8.setFont(new java.awt.Font("American Typewriter", 0, 14)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(102, 102, 102));
+        jLabel8.setText("Manage menu items for your restaurant.");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -164,7 +190,10 @@ private void clearFields(){
             .addGroup(layout.createSequentialGroup()
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 992, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jSeparator1))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel3)
@@ -172,32 +201,38 @@ private void clearFields(){
                             .addComponent(jLabel4)
                             .addComponent(jLabel5)
                             .addComponent(jLabel6)
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                .addComponent(btnAdd)
-                                .addComponent(jLabel7)))
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(btnUpdate)
-                                .addGap(52, 52, 52)
-                                .addComponent(btnDelete)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)
-                                .addComponent(btnSearch)
-                                .addGap(44, 44, 44)
-                                .addComponent(btnClear))
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addGap(9, 9, 9)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 334, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addComponent(txtItemName, javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addComponent(txtItemID, javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel7)
+                            .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(txtItemName)
+                                    .addComponent(cmbCategory, 0, 770, Short.MAX_VALUE)
                                     .addComponent(txtPrice)
+                                    .addComponent(chkAvailable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(txtPreparationTime)
-                                    .addComponent(cmbCategory, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(chkAvailable, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))))
-                .addGap(12, 12, 12))
+                                    .addComponent(txtItemID, javax.swing.GroupLayout.Alignment.LEADING))
+                                .addGap(12, 12, 12))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(79, 79, 79)
+                                .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, 86, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 207, Short.MAX_VALUE)
+                                .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(134, 134, 134)
+                                .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(117, 117, 117)
+                                .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(22, 22, 22))))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 399, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(288, 288, 288))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addGap(358, 358, 358))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -205,39 +240,46 @@ private void clearFields(){
                 .addContainerGap()
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addGap(22, 22, 22)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(txtItemID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtItemID, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(jLabel3)
                     .addComponent(txtItemName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(cmbCategory, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtPrice, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel6)
                     .addComponent(txtPreparationTime, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(7, 7, 7)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(chkAvailable))
-                .addGap(27, 27, 27)
+                .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAdd)
-                    .addComponent(btnUpdate)
-                    .addComponent(btnDelete)
-                    .addComponent(btnSearch)
-                    .addComponent(btnClear))
-                .addGap(23, 23, 23)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 627, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(btnAdd, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnUpdate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnSearch, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnClear, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(btnDelete, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 343, Short.MAX_VALUE)
+                        .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
+                .addContainerGap())
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -266,19 +308,12 @@ private void clearFields(){
             return;
             }
             
-            if (menuManager.searchMenuItem(itemId) != null) {
+            if (menuManager.searchItem(itemId) != null) {
             JOptionPane.showMessageDialog(this, "Item ID already exists.");
             return;
             }
             
-            MenuItem item = new MenuItem(
-                itemId,
-                itemName,
-                category,
-                price,
-                preparationTime,
-                available
-            );
+            MenuItem item = new MenuItem( itemId, itemName, category, price, preparationTime, available );
             
             menuManager.addMenuItem(item);
             
@@ -300,7 +335,7 @@ private void clearFields(){
         try {
             int itemId = Integer.parseInt(txtItemID.getText().trim());
             
-            MenuItem item = menuManager.searchMenuItem(itemId);
+            MenuItem item = menuManager.searchItem(itemId);
             
             if (item == null){
                 JOptionPane.showMessageDialog(this, "Item not found.");
@@ -325,6 +360,63 @@ private void clearFields(){
 
     }//GEN-LAST:event_btnUpdateActionPerformed
 
+    private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
+        // TODO add your handling code here:
+            int row = tblMenu.getSelectedRow();
+            
+            if (row == -1) {
+                JOptionPane.showMessageDialog(this, "Please select an item.");
+                return;
+            }
+            
+            int choice = JOptionPane.showConfirmDialog( this, "Are you sure you want to delete this item?","Delete Item",JOptionPane.YES_NO_OPTION);
+            
+            if (choice == JOptionPane.YES_OPTION) {
+                menuManager.removeItem(row);
+                DefaultTableModel model = (DefaultTableModel) tblMenu.getModel(); 
+                
+                refreshTable();
+                fileHandler.saveMenu(menuManager.getAllMenuItems());
+                clearFields(); 
+                JOptionPane.showMessageDialog(this, "Item deleted successfully.");
+            }
+    }//GEN-LAST:event_btnDeleteActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+        clearFields();
+    }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSearchActionPerformed
+        // TODO add your handling code here:
+        try {
+            int itemID = Integer.parseInt(txtItemID.getText());
+            
+            MenuItem item = menuManager.searchItem(itemID);
+            if (item == null) {
+                JOptionPane.showMessageDialog(this,"Item not found.");
+                return;
+            }
+            
+            txtItemName.setText(item.getItemName());
+            cmbCategory.setSelectedItem(item.getCategory());
+            txtPrice.setText(String.valueOf(item.getPrice()));
+            txtPreparationTime.setText(String.valueOf(item.getPreparationTime()));
+            chkAvailable.setSelected(item.isAvailable());
+            
+            for (int i = 0; i < tblMenu.getRowCount(); i++) {
+                int id = Integer.parseInt( tblMenu.getValueAt(i, 0).toString());
+                
+                if (id == itemID) {
+                    tblMenu.setRowSelectionInterval(i, i);
+                    break;
+                }
+            }
+        }catch (NumberFormatException ex) {
+            JOptionPane.showMessageDialog(this, "Enter a valid Item ID."); 
+        }
+    }//GEN-LAST:event_btnSearchActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAdd;
     private javax.swing.JButton btnClear;
@@ -340,7 +432,9 @@ private void clearFields(){
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSeparator jSeparator1;
     private javax.swing.JTable tblMenu;
     private javax.swing.JTextField txtItemID;
     private javax.swing.JTextField txtItemName;

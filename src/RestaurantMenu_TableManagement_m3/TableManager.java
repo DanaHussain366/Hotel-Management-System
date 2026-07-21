@@ -25,10 +25,6 @@ public class TableManager {
         tableList.add(table);
     }
     
-    public ArrayList<RestaurantTable> getAllTables() {
-        return tableList;
-    }
-    
     public RestaurantTable searchTable(int tableID){
         
         for (RestaurantTable table : tableList){
@@ -38,17 +34,6 @@ public class TableManager {
         }
         
         return null;
-    }
-    
-    public boolean deleteTable(int tableID){
-        RestaurantTable table = searchTable(tableID);
-        
-        if (table != null){
-            tableList.remove(table);
-            return true;
-        }
-        
-        return false;
     }
     
     public boolean updateTable(int tableID, int tableNumber, int seatingCapacity, String status){
@@ -63,6 +48,23 @@ public class TableManager {
         }
         
         return false;
+    }
+    
+    
+     public boolean deleteTable(int tableID){
+        RestaurantTable table = searchTable(tableID);
+        
+        if (table != null){
+            tableList.remove(table);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    
+    public ArrayList<RestaurantTable> getAllTables() {
+        return tableList;
     }
     
 }
