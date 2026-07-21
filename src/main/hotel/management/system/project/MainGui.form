@@ -52,17 +52,17 @@
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace min="-2" pref="16" max="-2" attributes="0"/>
               <Component id="titlelbl" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="36" max="-2" attributes="0"/>
               <Component id="btnroommanagement" min="-2" pref="47" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnreservation" min="-2" pref="59" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
-              <Component id="btnrestauraunt" min="-2" pref="59" max="-2" attributes="0"/>
               <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnreservation" min="-2" pref="59" max="-2" attributes="0"/>
+              <EmptySpace type="unrelated" max="-2" attributes="0"/>
+              <Component id="btnrestauraunt" min="-2" pref="59" max="-2" attributes="0"/>
+              <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnorder" min="-2" pref="64" max="-2" attributes="0"/>
               <EmptySpace type="separate" max="-2" attributes="0"/>
               <Component id="btnexit" min="-2" max="-2" attributes="0"/>
-              <EmptySpace pref="65" max="32767" attributes="0"/>
+              <EmptySpace pref="47" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
