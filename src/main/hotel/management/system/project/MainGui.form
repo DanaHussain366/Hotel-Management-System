@@ -27,13 +27,11 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="160" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="btnorder" min="-2" pref="249" max="-2" attributes="0"/>
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="btnroommanagement" max="32767" attributes="0"/>
-                              <Component id="btnreservation" max="32767" attributes="0"/>
-                              <Component id="btnrestauraunt" alignment="0" min="-2" max="-2" attributes="0"/>
-                          </Group>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="btnroommanagement" max="32767" attributes="0"/>
+                          <Component id="btnreservation" max="32767" attributes="0"/>
+                          <Component id="btnrestauraunt" alignment="0" max="32767" attributes="0"/>
+                          <Component id="btnorder" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
@@ -96,7 +94,7 @@
     </Component>
     <Component class="javax.swing.JButton" name="btnrestauraunt">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Restraunt Menu &amp; Table Management"/>
+        <Property name="text" type="java.lang.String" value="Restauraunt Menu &amp; Table Management"/>
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnrestaurauntActionPerformed"/>
