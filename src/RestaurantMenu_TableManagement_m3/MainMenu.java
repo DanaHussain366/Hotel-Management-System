@@ -4,6 +4,8 @@
  */
 package RestaurantMenu_TableManagement_m3;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Lolwah Al Ansari
@@ -14,22 +16,28 @@ public class MainMenu extends javax.swing.JFrame {
     private static final java.util.logging.Logger logger = java.util.logging.Logger.getLogger(MainMenu.class.getName());
     
     private boolean isAdmin;
-    private MenuManager menuManager;
-    private TableManager tableManager;
-    private FileHandler fileHandler;
     
     /**
      * Creates new form MainMenu
      */
     public MainMenu(boolean isAdmin) {
         initComponents();
-        
+        setLocationRelativeTo(null);
         this.isAdmin = isAdmin;
-        fileHandler = new FileHandler();
-        menuManager = new MenuManager();
-        tableManager = new TableManager();
+        
+        MenuPanel menuPanel = new MenuPanel(isAdmin);
+        pnlMenu.setLayout(new java.awt.BorderLayout());
+        pnlMenu.add(menuPanel, java.awt.BorderLayout.CENTER);
+        
+        TablePanel tablePanel = new TablePanel(isAdmin);
+        pnlTables.setLayout(new java.awt.BorderLayout());
+        pnlTables.add(tablePanel, java.awt.BorderLayout.CENTER);
+        
+        
+        ReportsPanel reportsPanel = new ReportsPanel();
+        pnlReports.setLayout(new java.awt.BorderLayout());
+        pnlReports.add(reportsPanel, java.awt.BorderLayout.CENTER);
     }
-
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,24 +49,36 @@ public class MainMenu extends javax.swing.JFrame {
 
         tabMain = new javax.swing.JTabbedPane();
         pnlMenu = new javax.swing.JPanel();
+        btnLogout = new javax.swing.JButton();
         pnlTables = new javax.swing.JPanel();
         pnlReports = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Resturant Management System");
+        setTitle("Restaurant Menu & Table Management ");
+        setPreferredSize(new java.awt.Dimension(1050, 700));
         setResizable(false);
 
         pnlMenu.setName(""); // NOI18N
+
+        btnLogout.setBackground(new java.awt.Color(33, 99, 181));
+        btnLogout.setFont(new java.awt.Font("American Typewriter", 1, 14)); // NOI18N
+        btnLogout.setForeground(new java.awt.Color(255, 255, 255));
+        btnLogout.setText("Logout");
+        btnLogout.addActionListener(this::btnLogoutActionPerformed);
 
         javax.swing.GroupLayout pnlMenuLayout = new javax.swing.GroupLayout(pnlMenu);
         pnlMenu.setLayout(pnlMenuLayout);
         pnlMenuLayout.setHorizontalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, pnlMenuLayout.createSequentialGroup()
+                .addGap(0, 928, Short.MAX_VALUE)
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         pnlMenuLayout.setVerticalGroup(
             pnlMenuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 253, Short.MAX_VALUE)
+            .addGroup(pnlMenuLayout.createSequentialGroup()
+                .addComponent(btnLogout, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 581, Short.MAX_VALUE))
         );
 
         tabMain.addTab("Menu Items", pnlMenu);
@@ -67,24 +87,24 @@ public class MainMenu extends javax.swing.JFrame {
         pnlTables.setLayout(pnlTablesLayout);
         pnlTablesLayout.setHorizontalGroup(
             pnlTablesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGap(0, 1017, Short.MAX_VALUE)
         );
         pnlTablesLayout.setVerticalGroup(
             pnlTablesLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 253, Short.MAX_VALUE)
+            .addGap(0, 611, Short.MAX_VALUE)
         );
 
-        tabMain.addTab("Resturant Tables", pnlTables);
+        tabMain.addTab("Restaurant Tables", pnlTables);
 
         javax.swing.GroupLayout pnlReportsLayout = new javax.swing.GroupLayout(pnlReports);
         pnlReports.setLayout(pnlReportsLayout);
         pnlReportsLayout.setHorizontalGroup(
             pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 388, Short.MAX_VALUE)
+            .addGap(0, 1017, Short.MAX_VALUE)
         );
         pnlReportsLayout.setVerticalGroup(
             pnlReportsLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 253, Short.MAX_VALUE)
+            .addGap(0, 611, Short.MAX_VALUE)
         );
 
         tabMain.addTab("Reports", pnlReports);
@@ -100,7 +120,7 @@ public class MainMenu extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(tabMain)
                 .addContainerGap())
@@ -108,6 +128,16 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnLogoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLogoutActionPerformed
+        // TODO add your handling code here:
+        int choice = JOptionPane.showConfirmDialog( this, "Are you sure you want to logout?", "Logout", JOptionPane.YES_NO_OPTION);
+        
+        if (choice == JOptionPane.YES_OPTION) {
+            new LoginFrame().setVisible(true);
+            dispose();
+        }
+    }//GEN-LAST:event_btnLogoutActionPerformed
 
     /**
      * @param args the command line arguments
@@ -135,6 +165,7 @@ public class MainMenu extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnLogout;
     private javax.swing.JPanel pnlMenu;
     private javax.swing.JPanel pnlReports;
     private javax.swing.JPanel pnlTables;

@@ -47,20 +47,19 @@ public class FileHandler {
             BufferedReader reader = new BufferedReader(new FileReader(MENU_FILE));
             String line;
             
-            while ((line = reader.readLine()) != null){
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
                 String[] data = line.split(",");
+                if (data.length < 6) {
+                    continue;
+                }
                 
-                MenuItem item = new MenuItem(
-                    Integer.parseInt(data[0]),
-                    data[1],
-                    data[2],
-                    Double.parseDouble(data[3]),
-                    Integer.parseInt(data[4]),
-                    Boolean.parseBoolean(data[5])
-                );
-                
+                MenuItem item = new MenuItem( Integer.parseInt(data[0]),data[1], data[2],Double.parseDouble(data[3]),Integer.parseInt(data[4]), Boolean.parseBoolean(data[5]));
                 menuList.add(item);
             }
+            
             reader.close();
         } catch (IOException e) {
             System.out.println("Menu file not found.");
@@ -86,27 +85,26 @@ public class FileHandler {
         }
     }
     
-    public ArrayList<RestaurantTable> loadTables(){
-        
+    public ArrayList<RestaurantTable> loadTables() {
         ArrayList<RestaurantTable> tableList = new ArrayList<>();
         
         try {
             BufferedReader reader = new BufferedReader(new FileReader(TABLE_FILE));
             String line;
             
-            while((line=reader.readLine())!=null){
-                String[] data=line.split(",");
-                
-                RestaurantTable table=new RestaurantTable(
-                    Integer.parseInt(data[0]),
-                    Integer.parseInt(data[1]),
-                    Integer.parseInt(data[2]),
-                    data[3]
-                );
+            while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+                String[] data = line.split(",");
+                if (data.length < 4) {
+                    continue;
+                }
+                RestaurantTable table = new RestaurantTable( Integer.parseInt(data[0]), Integer.parseInt(data[1]), Integer.parseInt(data[2]),data[3] );
                 tableList.add(table);
             }
             reader.close();
-        } catch(IOException e){
+        } catch (IOException e) {
             System.out.println("Table file not found.");
         }
         return tableList;
@@ -139,12 +137,20 @@ public class FileHandler {
             String line;
             
             while ((line = reader.readLine()) != null) {
+                if (line.trim().isEmpty()) {
+                    continue;
+                }
+                
                 String[] data = line.split(",");
                 
+                if (data.length < 3) {
+                    continue;
+                }
+                
                 User user = new User(
-                    data[0],
-                    data[1],
-                    data[2]
+                        data[0].trim(),
+                        data[1].trim(),
+                        Role.valueOf(data[2].trim())
                 );
                 userList.add(user);
             }

@@ -25,34 +25,17 @@ public class MenuManager {
         menuList.add(item);
     }
     
-    public ArrayList<MenuItem> getAllMenuItems(){
-        return menuList;
-    }
-    
-    public MenuItem searchMenuItem(int itemID){
-        
+     public MenuItem searchItem(int id) {
         for (MenuItem item : menuList){
-            if (item.getItemID() == itemID){
+            if (item.getItemID() == id) {
                 return item;
             }
         }
-        
-        return null;
-    }
-    
-    public boolean deleteMenuItem(int itemID){
-        MenuItem item = searchMenuItem(itemID);
-        
-        if (item != null){
-            menuList.remove(item);
-            return true;
-        }
-        
-        return false;
+    return null;
     }
     
     public boolean updateMenuItem(int itemID, String itemName, String category, double price, int preparationTime, boolean available){
-        MenuItem item = searchMenuItem(itemID);
+        MenuItem item = searchItem(itemID);
         
         if (item != null){
             item.setItemName(itemName);
@@ -65,6 +48,28 @@ public class MenuManager {
         }
         
         return false;
+    }
+    
+     public boolean deleteMenuItem(int itemID){
+        MenuItem item = searchItem(itemID);
+        
+        if (item != null){
+            menuList.remove(item);
+            return true;
+        }
+        
+        return false;
+    }
+    
+    public void removeItem(int index) {
+        if (index >= 0 && index < menuList.size()) {
+            menuList.remove(index);
+        }
+    }
+    
+
+    public ArrayList<MenuItem> getAllMenuItems(){
+        return menuList;
     }
     
 }
