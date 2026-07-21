@@ -20,55 +20,52 @@ public class RoomManager {
         rooms.add(r);
     }
     
-    public void searchRoomNumber(int roomNumber){
+    public Room searchRoomNumber(int roomNumber){
         for (Room r : rooms){
             if (r.getRoomNumber() == roomNumber){
-               System.out.println(r);
-               return;
+               return r;
             } 
         }
-        System.out.println("No room found.");
+        return null;
     }
     
-    public void searchRoomType (String roomType){
-        boolean found = false;
-        for (Room r : rooms){
-            if (r.getRoomType().equals(roomType)){
-               found = true;
-               System.out.println(r);
+    public ArrayList<Room> searchRoomType(String roomType) {
+
+        ArrayList<Room> result = new ArrayList<>();
+
+        for (Room r : rooms) {
+
+            if (r.getRoomType().equalsIgnoreCase(roomType)) {
+                result.add(r);
             }
         }
-        
-        if (!found){
-            System.out.println("No room found.");
-        }
+        return result;
     }
     
-    public void searchFloorNumber (int floorNumber){
-        boolean found = false;
-        for (Room r : rooms){
-            if (r.getFloorNumber() == floorNumber){
-               found = true;
-               System.out.println(r);
-               
+    public ArrayList<Room> searchFloorNumber(int floorNumber) {
+
+        ArrayList<Room> result = new ArrayList<>();
+
+        for (Room r : rooms) {
+            
+            if (r.getFloorNumber() == floorNumber) {
+                result.add(r);
             }
         }
-        if (!found){
-            System.out.println("No room found.");
-        }
+        return result;
     }
     
-    public void searchRoomStatus(RoomStatus roomStatus){
-        boolean found = false;
-        for (Room r : rooms){
-            if (r.getRoomStatus() == roomStatus){
-                found = true;
-               System.out.println(r);
+    public ArrayList<Room> searchRoomStatus(RoomStatus roomStatus) {
+
+        ArrayList<Room> result = new ArrayList<>();
+
+        for (Room r : rooms) {
+
+            if (r.getRoomStatus() == roomStatus) {
+                result.add(r);
             }
         }
-        if (!found){
-            System.out.println("No room found.");
-        }
+        return result;
     }
     
     public void editRoom(int roomNumber, int floorNumber, String roomType, int bedCount, double pricePerNight,
@@ -114,7 +111,6 @@ public class RoomManager {
     
     public void changeRoomStatus (int roomNumber , RoomStatus roomStatus){
         
-        //clearupp - r is one room object
         for (Room r : rooms){
             if (r.getRoomNumber() == roomNumber){
                r.setRoomStatus(roomStatus);

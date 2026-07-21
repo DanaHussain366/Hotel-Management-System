@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  */
 
-package com.mycompany.hotel.management.system.project;
+package main.hotel.management.system.project;
 
 /**
  *

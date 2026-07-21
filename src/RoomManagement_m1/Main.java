@@ -5,8 +5,7 @@
 package RoomManagement_m1;
 
 /**
- *
- * @author 
+ * Jana Salem 2241100402
  */
 public class Main {
     
