@@ -26,7 +26,7 @@ public class RoomManagementGUI extends javax.swing.JFrame {
      */
     public RoomManagementGUI() {
         initComponents();
-        txtprice.setEditable(false);
+        
         manager = new RoomManager();
         files = new RoomFiles(manager);
         
@@ -173,6 +173,8 @@ public class RoomManagementGUI extends javax.swing.JFrame {
                 .addComponent(chkBalcony)
                 .addGap(12, 12, 12))
         );
+
+        txtprice.setEditable(false);
 
         cmbxroomtyp.setFont(new java.awt.Font("Helvetica Neue", 0, 12)); // NOI18N
         cmbxroomtyp.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Single", "Double", "Deluxe", "Suite", "Family" }));
@@ -748,7 +750,7 @@ public class RoomManagementGUI extends javax.swing.JFrame {
         boolean hasTV = chkTV.isSelected();
         boolean hasBalcony = chkBalcony.isSelected();
 
-        if(manager.searchRoomNumber(roomNumber)==null){
+        if(manager.searchRoomNumber(roomNumber) == null){
 
             JOptionPane.showMessageDialog(this,
             "Room not found.");
@@ -800,14 +802,22 @@ public class RoomManagementGUI extends javax.swing.JFrame {
 
             model.setRowCount(0);
 
-            if(r != null){
+            if (r != null) {
 
-                model.addRow(new Object[]{
-                    r.getRoomNumber(),r.getFloorNumber(),r.getRoomType(),r.getBedCount(),
-                    r.getPricePerNight(),r.getRoomStatus(),r.getHasAC(),r.getHasWifi(),
-                    r.getHasTV(),r.getHasBalcony()
-                });
-            }
+            model.addRow(new Object[]{
+            r.getRoomNumber(), r.getFloorNumber(), r.getRoomType(), r.getBedCount(),
+            r.getPricePerNight(), r.getRoomStatus(), r.getHasAC(), r.getHasWifi(),
+            r.getHasTV(), r.getHasBalcony()
+            });
+
+            } else {
+
+            JOptionPane.showMessageDialog(
+            this,
+            "Room number not found."
+            );
+
+}
         }
         
         else if(search.equals("Floor Number")){

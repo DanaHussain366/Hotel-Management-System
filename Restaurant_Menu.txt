@@ -14,3 +14,4 @@
 14,Orange Juice,Drink,2.5,2,true
 15,Chicken Wings,Starter,3.75,12,true
 16,Cheesecake,Dessert,3.5,5,true
+21,1,Starter,2.0,3,true

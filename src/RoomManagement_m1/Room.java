@@ -119,15 +119,9 @@ public class Room {
     
     @Override
     public String toString(){
-        return  "Room Number: " + roomNumber +
-                "\nFloor Number: " + floorNumber +
-                "\nRoom Type: " + roomType + 
-                "\nBed Count: " + bedCount +
-                "\nPrice Per Night: " + pricePerNight +
-                "\nRoom Status: " + roomStatus +
-                "\nAC Status: " + hasAC +
-                "\nWifi Status: " + hasWifi +
-                "\nTV Status: " + hasTV + 
+        return  "Room Number: " + roomNumber + "\nFloor Number: " + floorNumber +"\nRoom Type: " + roomType + 
+                "\nBed Count: " + bedCount +"\nPrice Per Night: " + pricePerNight +
+                "\nRoom Status: " + roomStatus +"\nAC Status: " + hasAC + "\nWifi Status: " + hasWifi +"\nTV Status: " + hasTV + 
                 "\nBalcony Status: " + hasBalcony;
     }
     

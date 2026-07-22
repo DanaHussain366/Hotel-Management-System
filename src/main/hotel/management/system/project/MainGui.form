@@ -159,6 +159,9 @@
             </Property>
             <Property name="text" type="java.lang.String" value="Restaurant Order Management"/>
           </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="btnorderActionPerformed"/>
+          </Events>
         </Component>
       </SubComponents>
     </Container>

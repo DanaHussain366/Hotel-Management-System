@@ -15,7 +15,6 @@ public class Main {
         RoomFiles files = new RoomFiles(manager);
 
         files.loadRooms();
-
         manager.displayRooms();
 
     }

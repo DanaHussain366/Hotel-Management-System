@@ -842,7 +842,7 @@ private void refreshTable() {
             JOptionPane.YES_NO_OPTION);
 
     if (choice == JOptionPane.YES_OPTION) {
-        System.exit(0);
+        this.dispose();
     }
     }//GEN-LAST:event_btnExitActionPerformed
 

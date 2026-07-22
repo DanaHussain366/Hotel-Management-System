@@ -13,6 +13,7 @@ import RoomManagement_m1.RoomManagementGUI;
 import RestaurantMenu_TableManagement_m3.LoginFrame;
 import ReservationAndGuestStay_m2.ReservationGUI;
 import javax.swing.JOptionPane;
+import RestaurantOrderManagement_m4.LogIn;
 
 public class MainGui extends javax.swing.JFrame {
     
@@ -68,6 +69,7 @@ public class MainGui extends javax.swing.JFrame {
 
         btnorder.setFont(new java.awt.Font("STIX Two Text", 0, 14)); // NOI18N
         btnorder.setText("Restaurant Order Management");
+        btnorder.addActionListener(this::btnorderActionPerformed);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,6 +164,11 @@ public class MainGui extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_btnexitActionPerformed
+
+    private void btnorderActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnorderActionPerformed
+        LogIn login = new LogIn();
+        login.setVisible(true);
+    }//GEN-LAST:event_btnorderActionPerformed
 
     /**
      * @param args the command line arguments

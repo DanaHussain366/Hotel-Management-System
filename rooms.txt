@@ -1,5 +1,7 @@
-104,2,Deluxe,2,70.0,MAINTENANCE,true,true,true,true
+104,3,Single,5,30.0,RESERVED,true,true,true,true
 202,2,Single,2,30.0,RESERVED,true,false,true,false
 303,3,Family,5,110.0,OCCUPIED,true,true,true,true
-403,4,Double,4,50.0,AVAILABLE,true,true,false,false
+403,4,Double,4,50.0,RESERVED,true,true,false,false
 109,1,Deluxe,4,70.0,AVAILABLE,false,true,true,false
+508,5,Deluxe,3,70.0,OCCUPIED,true,true,false,false
+405,4,Family,5,110.0,OCCUPIED,false,false,false,false

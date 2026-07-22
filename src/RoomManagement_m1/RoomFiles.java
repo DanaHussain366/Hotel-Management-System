@@ -28,29 +28,20 @@ public class RoomFiles {
             for (Room r : manager.getRooms()) {
 
                 writer.println(
-                        r.getRoomNumber() + "," +
-                        r.getFloorNumber() + "," +
-                        r.getRoomType() + "," +
-                        r.getBedCount() + "," +
-                        r.getPricePerNight() + "," +
-                        r.getRoomStatus() + "," +
-                        r.getHasAC() + "," +
-                        r.getHasWifi() + "," +
-                        r.getHasTV() + "," +
-                        r.getHasBalcony());
-
+                        r.getRoomNumber() + "," +r.getFloorNumber() + "," +
+                        r.getRoomType() + "," +r.getBedCount() + "," +
+                        r.getPricePerNight() + "," +r.getRoomStatus() + "," +
+                        r.getHasAC() + "," +r.getHasWifi() + "," +
+                        r.getHasTV() + "," +r.getHasBalcony());
             }
 
             writer.close();
-
             System.out.println("Rooms saved successfully.");
 
         }
 
         catch (IOException e) {
-
             System.out.println("Error. Couldn't save rooms.");
-
         }
 
     }
@@ -59,13 +50,13 @@ public class RoomFiles {
 
         try {
 
-            Scanner input = new Scanner(new File("rooms.txt"));
+            Scanner in = new Scanner(new File("rooms.txt"));
 
             manager.getRooms().clear();
 
-            while (input.hasNextLine()) {
+            while (in.hasNextLine()) {
 
-                String line = input.nextLine();
+                String line = in.nextLine();
 
                 String[] data = line.split(",");
 
@@ -80,32 +71,22 @@ public class RoomFiles {
                 boolean hasTV = Boolean.parseBoolean(data[8]);
                 boolean hasBalcony = Boolean.parseBoolean(data[9]);
 
-                Room room = new Room(
-                        roomNumber,
-                        floorNumber,
-                        roomType,
-                        bedCount,
-                        pricePerNight,
-                        roomStatus,
-                        hasAC,
-                        hasWifi,
-                        hasTV,
-                        hasBalcony);
+                Room r = new Room(
+                        roomNumber,floorNumber,roomType,
+                        bedCount,pricePerNight,roomStatus,
+                        hasAC,hasWifi,hasTV,hasBalcony);
 
-                manager.addRoom(room);
+                manager.addRoom(r);
 
             }
 
-            input.close();
+            in.close();
 
             System.out.println("Rooms loaded successfully.");
-
         }
 
         catch (IOException e) {
-
-            System.out.println("Error. Couldn't load rooms.");
-
+            System.out.println("Error. Could not load rooms.");
         }
 
     }

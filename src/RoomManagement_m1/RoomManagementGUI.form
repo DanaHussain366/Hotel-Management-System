@@ -339,6 +339,9 @@
         <Component class="javax.swing.JTextField" name="txtbedcount">
         </Component>
         <Component class="javax.swing.JTextField" name="txtprice">
+          <Properties>
+            <Property name="editable" type="boolean" value="false"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="cmbxroomtyp">
           <Properties>

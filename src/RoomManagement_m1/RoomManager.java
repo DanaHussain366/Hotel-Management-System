@@ -27,6 +27,7 @@ public class RoomManager {
             } 
         }
         return null;
+        
     }
     
     public ArrayList<Room> searchRoomType(String roomType) {
